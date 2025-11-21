@@ -144,10 +144,11 @@ export const sendAssistantMessage = async (message: string, useSearch: boolean =
     // Extract grounding metadata if available
     const groundingChunks = response.candidates?.[0]?.groundingMetadata?.groundingChunks || [];
     
-    // FIX: Explicit type predicate ensures TypeScript knows this array contains no nulls
+    // FIX: Explicitly cast the result to ensure TypeScript allows assignment to ChatMessage['sources']
+    // This removes any ambiguity about 'null' values remaining in the array.
     const sources = groundingChunks
       .map((chunk: any) => chunk.web ? { uri: chunk.web.uri, title: chunk.web.title } : null)
-      .filter((item: any): item is { uri: string; title: string } => item !== null);
+      .filter((item: any) => item !== null) as { uri: string; title: string }[];
 
     return { text, sources };
   } catch (error) {
