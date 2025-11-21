@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AppSettings, FirebaseConfig } from '../types';
-import { Save, X, Database, AlertCircle, Wifi, Flame, HelpCircle, RefreshCw, DownloadCloud } from 'lucide-react';
+import { Save, X, Database, AlertCircle, Wifi, Flame, HelpCircle, RefreshCw, Download } from 'lucide-react';
 import { syncWithFirebase } from '../services/firebaseService';
 import { ToastType } from './Toast';
 
